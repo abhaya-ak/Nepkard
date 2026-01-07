@@ -9,9 +9,10 @@ venv/
 # Django
 db.sqlite3
 media/
-
-# Static collected files
 staticfiles/
+
+# Logs
+*.log
 
 # OS
 .DS_Store
