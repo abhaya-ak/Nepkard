@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Order #{{ order.id }}</h3>
+
+<p><strong>Status:</strong> {{ order.status }}</p>
+<p><strong>City:</strong> {{ order.city }}</p>
+<p><strong>Address:</strong> {{ order.address }}</p>
+<p><strong>Phone:</strong> {{ order.phone }}</p>
+
+<hr>
+
+<h5>Items</h5>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Qty</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in order.items.all %}
+    <tr>
+      <td>{{ item.product_name }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>Rs. {{ item.price }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

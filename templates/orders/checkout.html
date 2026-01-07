@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-md-6">
+
+    <h3 class="fw-bold mb-4">Checkout</h3>
+
+    <div class="alert alert-light border mb-4">
+      <strong>Delivery Area:</strong> Nepal only<br>
+      <small class="text-muted">
+        Please enter a valid address to avoid delivery delays.
+      </small>
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label class="form-label">City</label>
+        <input name="city" class="form-control" placeholder="Kathmandu" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Full Address</label>
+        <textarea name="address" class="form-control" rows="3"
+                  placeholder="Street, area, landmark" required></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Phone Number</label>
+        <input name="phone" class="form-control" placeholder="98XXXXXXXX" required>
+      </div>
+
+      <button class="btn btn-dark w-100 py-2">
+        Proceed to Payment
+      </button>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

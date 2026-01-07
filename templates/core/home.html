@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero-section text-center py-5">
+  <div class="container">
+    <h1 class="fw-bold display-5 mb-3">Shop Smart with Nepkard</h1>
+    <p class="text-muted fs-5 mb-4">
+      Nepal’s simple, secure, and trusted online shopping platform
+    </p>
+
+    <div class="d-flex justify-content-center gap-3">
+      <a href="/products/" class="btn btn-dark btn-lg px-4">
+        Browse Products
+      </a>
+      {% if not user.is_authenticated %}
+      <a href="/accounts/register/" class="btn btn-outline-dark btn-lg px-4">
+        Create Account
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-4 mb-4">
+        <h5 class="fw-bold">🇳🇵 Nepal Focused</h5>
+        <p class="text-muted">
+          Designed specifically for delivery inside Nepal.
+        </p>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h5 class="fw-bold">🔒 Maintain Privacy</h5>
+        <p class="text-muted">
+          One of the trusted Platform .
+          Your Trust our commitment !
+        </p>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h5 class="fw-bold">📦 Physical Products</h5>
+        <p class="text-muted">
+          Simple, transparent, and reliable shopping.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="cta-strip text-center py-5">
+  <div class="container">
+    <h3 class="fw-bold mb-3">Ready to start shopping?</h3>
+    <a href="/products/" class="btn btn-dark btn-lg">
+      View All Products
+    </a>
+  </div>
+</section>
+
+
+<footer class="site-footer mt-5">
+  <div class="container py-5">
+    <div class="row">
+
+      <!-- Brand -->
+      <div class="col-md-4 mb-4">
+        <h5 class="fw-bold">Nepkard</h5>
+        <p class="text-muted small">
+          A simple, secure, and Nepal-focused e-commerce platform
+          for physical products with manual payment verification.
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold">Quick Links</h6>
+        <ul class="list-unstyled small">
+          <li><a href="/products/" class="footer-link">Products</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="/orders/my/" class="footer-link">My Orders</a></li>
+            <li><a href="/accounts/logout/" class="footer-link">Logout</a></li>
+          {% else %}
+            <li><a href="/accounts/login/" class="footer-link">Login</a></li>
+            <li><a href="/accounts/register/" class="footer-link">Register</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <!-- Info -->
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold">Information</h6>
+        <p class="text-muted small mb-1">
+          🚚 Delivery within Nepal only
+        </p>
+        <p class="text-muted small mb-0">
+          💳 QR-based payment with manual verification
+        </p>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <div class="text-center small text-muted">
+      © {{ now|date:"Y" }} Nepkard. All rights reserved.
+    </div>
+  </div>
+</footer>
+{% endblock %}

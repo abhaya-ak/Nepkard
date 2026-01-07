@@ -1,0 +1,70 @@
+.hero-section {
+    background: linear-gradient(180deg, #ffffff, #f8f9fa);
+}
+
+.cta-strip {
+    background-color: #ffffff;
+    border-top: 1px solid #eaeaea;
+}
+
+h1, h3 {
+    letter-spacing: -0.5px;
+}
+.product-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 12px;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.product-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.product-image-wrapper img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.stock-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 0.75rem;
+}
+.payment-box {
+    border: 1px dashed #ddd;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #fff;
+}
+
+.success-icon {
+    font-size: 3rem;
+    color: #198754;
+}
+
+.site-footer {
+    background-color: #ffffff;
+    border-top: 1px solid #eaeaea;
+}
+
+.site-footer h5,
+.site-footer h6 {
+    letter-spacing: -0.3px;
+}
+
+.footer-link {
+    color: #212529;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
