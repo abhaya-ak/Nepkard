@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- HERO SECTION -->
+<!-- ================= HERO SECTION ================= -->
 <section class="hero-section text-center py-5">
   <div class="container">
     <h1 class="fw-bold display-5 mb-3">Shop Smart with Nepkard</h1>
@@ -22,34 +22,82 @@
   </div>
 </section>
 
-<!-- FEATURES -->
+<!-- ================= CENTER MODE SLIDER ================= -->
+{% if top_products %}
+<section class="py-5">
+  <div class="container">
+
+    <h3 class="fw-bold text-center mb-4">Top Products</h3>
+
+    <div class="center-slider-wrapper">
+
+      <!-- Left Arrow -->
+      <button class="slider-arrow left" id="prevBtn" aria-label="Previous">
+        ‹
+      </button>
+
+      <!-- Slider -->
+      <div class="center-slider" id="centerSlider">
+        {% for product in top_products %}
+        <div class="center-slide {% if forloop.first %}active{% endif %}">
+          <div class="center-card">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <div class="center-card-body text-center">
+              <h6 class="fw-bold">{{ product.name }}</h6>
+              <p class="fw-bold mb-2">Rs. {{ product.price }}</p>
+              <a href="{% url 'product_detail' product.slug %}"
+                 class="btn btn-outline-dark btn-sm">
+                View Product
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Right Arrow -->
+      <button class="slider-arrow right" id="nextBtn" aria-label="Next">
+        ›
+      </button>
+
+    </div>
+
+  </div>
+</section>
+{% endif %}
+
+<!-- ================= FEATURES ================= -->
 <section class="py-5 bg-light">
   <div class="container">
     <div class="row text-center">
+
       <div class="col-md-4 mb-4">
         <h5 class="fw-bold">🇳🇵 Nepal Focused</h5>
         <p class="text-muted">
           Designed specifically for delivery inside Nepal.
         </p>
       </div>
+
       <div class="col-md-4 mb-4">
         <h5 class="fw-bold">🔒 Maintain Privacy</h5>
         <p class="text-muted">
-          One of the trusted Platform .
-          Your Trust our commitment !
+          One of the trusted platforms.
+          Your trust is our commitment.
         </p>
       </div>
+
       <div class="col-md-4 mb-4">
         <h5 class="fw-bold">📦 Physical Products</h5>
         <p class="text-muted">
           Simple, transparent, and reliable shopping.
         </p>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- CTA STRIP -->
+<!-- ================= CTA ================= -->
 <section class="cta-strip text-center py-5">
   <div class="container">
     <h3 class="fw-bold mb-3">Ready to start shopping?</h3>
@@ -59,12 +107,11 @@
   </div>
 </section>
 
-
+<!-- ================= FOOTER ================= -->
 <footer class="site-footer mt-5">
   <div class="container py-5">
     <div class="row">
 
-      <!-- Brand -->
       <div class="col-md-4 mb-4">
         <h5 class="fw-bold">Nepkard</h5>
         <p class="text-muted small">
@@ -73,7 +120,6 @@
         </p>
       </div>
 
-      <!-- Links -->
       <div class="col-md-4 mb-4">
         <h6 class="fw-bold">Quick Links</h6>
         <ul class="list-unstyled small">
@@ -88,7 +134,6 @@
         </ul>
       </div>
 
-      <!-- Info -->
       <div class="col-md-4 mb-4">
         <h6 class="fw-bold">Information</h6>
         <p class="text-muted small mb-1">
@@ -108,4 +153,5 @@
     </div>
   </div>
 </footer>
+
 {% endblock %}
