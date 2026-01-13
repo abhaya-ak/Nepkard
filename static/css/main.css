@@ -47,11 +47,9 @@ h1, h3 {
     left: 10px;
     font-size: 0.75rem;
 }
-
 /* =========================
    CHECKOUT / PAYMENT
 ========================= */
-
 .payment-box {
     border: 1px dashed #ddd;
     padding: 20px;
@@ -131,13 +129,11 @@ h1, h3 {
     transform: scale(0.88);
     transition: all 0.6s ease;
 }
-
 /* Active (center) slide */
 .center-slide.active {
     opacity: 1;
     transform: scale(1);
 }
-
 /* Card */
 .center-card {
     width: 100%;
