@@ -1,16 +1,23 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
+from .models import Profile
 
 class EmailAuthenticationForm(AuthenticationForm):
-    username = forms.EmailField(label="Email", widget=forms.EmailInput(attrs={
-        "class": "form-control",
-        "placeholder": "Enter email"
-    }))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={
-        "class": "form-control",
-        "placeholder": "Enter password"
-    }))
+    username = forms.EmailField(
+        label="Email",
+        widget=forms.EmailInput(attrs={
+            "class": "form-control",
+            "placeholder": "Enter email"
+        })
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            "class": "form-control",
+            "placeholder": "Enter password"
+        })
+    )
+
 
 class RegisterForm(forms.ModelForm):
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control"}))
@@ -31,8 +38,27 @@ class RegisterForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.username = user.email  # internal use
+        user.username = user.email
         user.set_password(self.cleaned_data["password1"])
         if commit:
             user.save()
         return user
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ["user"]
+        widgets = {
+            "name": forms.TextInput(attrs={"class": "form-control"}),
+            "dob": forms.DateInput(attrs={"type": "date", "class": "form-control"}),
+            "gender": forms.Select(attrs={"class": "form-select"}),
+            "locality": forms.TextInput(attrs={"class": "form-control"}),
+            "city": forms.TextInput(attrs={"class": "form-control"}),
+            "pin": forms.NumberInput(attrs={"class": "form-control"}),
+            "state": forms.Select(attrs={"class": "form-select"}),
+            "mobile": forms.TextInput(attrs={"class": "form-control"}),
+            "job_city": forms.TextInput(attrs={"class": "form-control"}),
+            "profile_image": forms.ClearableFileInput(attrs={"class": "form-control"}),
+            "my_file": forms.ClearableFileInput(attrs={"class": "form-control"}),
+        }

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="py-5">
+  <div class="container" style="max-width: 750px;">
+
+    <h3 class="fw-bold mb-4 text-center">My Profile</h3>
+
+    <!-- VIEW MODE -->
+    <div id="profileView" class="card p-4 shadow-sm border-0 mb-3">
+      <div class="text-center mb-3">
+        {% if user.profile.profile_image %}
+          <img src="{{ user.profile.profile_image.url }}"
+               class="rounded-circle mb-2"
+               style="width:120px;height:120px;object-fit:cover;">
+        {% else %}
+          <img src="{% static 'images/default-user.png' %}"
+               class="rounded-circle mb-2"
+               style="width:120px;height:120px;">
+        {% endif %}
+        <h5 class="fw-bold">{{ user.profile.name|default:user.email }}</h5>
+        <p class="text-muted small">{{ user.email }}</p>
+      </div>
+
+      <ul class="list-group list-group-flush small">
+        <li class="list-group-item"><strong>Mobile:</strong> {{ user.profile.mobile }}</li>
+        <li class="list-group-item"><strong>City:</strong> {{ user.profile.city }}</li>
+        <li class="list-group-item"><strong>State:</strong> {{ user.profile.state }}</li>
+        <li class="list-group-item"><strong>DOB:</strong> {{ user.profile.dob }}</li>
+        <li class="list-group-item"><strong>Gender:</strong> {{ user.profile.get_gender_display }}</li>
+        <li class="list-group-item"><strong>Job City:</strong> {{ user.profile.job_city }}</li>
+      </ul>
+      <div class="text-center mt-3">
+        <button class="btn btn-outline-dark" onclick="toggleProfileEdit()">Edit Profile</button>
+      </div>
+    </div>
+    <div id="profileEdit" class="card p-4 shadow-sm border-0 d-none">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="mb-3">
+            <label class="form-label fw-semibold">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+              <div class="text-danger small">{{ field.errors|striptags }}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+        <div class="d-flex justify-content-between mt-3">
+          <button type="button" class="btn btn-outline-secondary" onclick="toggleProfileEdit()">Cancel</button>
+          <button type="submit" class="btn btn-dark">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<script>
+function toggleProfileEdit() {
+  document.getElementById("profileView").classList.toggle("d-none");
+  document.getElementById("profileEdit").classList.toggle("d-none");
+}
+</script>
+
+{% endblock %}

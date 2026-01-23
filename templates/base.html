@@ -27,40 +27,48 @@
           <a class="nav-link" href="/products/">Products</a>
         </li>
       </ul>
-      <ul class="navbar-nav align-items-lg-center gap-lg-2">
-        <li class="nav-item">
-          <a class="nav-link position-relative" href="/cart/">
-            Cart
-            {% if cart_item_count > 0 %}
-            <span class="position-absolute top-0 start-100 translate-middle
-                         badge rounded-pill bg-dark">
-              {{ cart_item_count }}
-            </span>
-            {% endif %}
-          </a>
-        </li>
-        {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="/orders/my/">My Orders</a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-outline-dark btn-sm" href="/accounts/logout/">
-              Logout
-            </a>
-          </li>
-        {% else %}
-          <li class="nav-item">
-            <a class="btn btn-outline-dark btn-sm" href="/accounts/login/">
-              Login
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-dark btn-sm" href="/accounts/register/">
-              Register
-            </a>
-          </li>
-        {% endif %}
-      </ul>
+<ul class="navbar-nav align-items-center ms-auto gap-3">
+
+  <li class="nav-item">
+    <a class="nav-link position-relative" href="/cart/">
+      🛒
+      {% if cart_item_count > 0 %}
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        {{ cart_item_count }}
+      </span>
+      {% endif %}
+    </a>
+  </li>
+
+  {% if user.is_authenticated %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle d-flex align-items-center"
+       href="#" id="profileDropdown"
+       role="button" data-bs-toggle="dropdown">
+
+      {% if user.profile.profile_image %}
+        <img src="{{ user.profile.profile_image.url }}" class="nav-avatar">
+      {% else %}
+        <img src="{% static 'images/default-user.png' %}"
+     class="nav-avatar"
+     style="width:32px;height:32px;border-radius:50%;"
+     alt="Profile">
+      {% endif %}
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+      <li><a class="dropdown-item" href="/profile/">My Profile</a></li>
+      <li><a class="dropdown-item" href="/orders/my/">My Orders</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item text-danger" href="/accounts/logout/">Logout</a></li>
+    </ul>
+  </li>
+  {% else %}
+  <li class="nav-item"><a class="btn btn-outline-dark btn-sm" href="/accounts/login/">Login</a></li>
+  <li class="nav-item"><a class="btn btn-dark btn-sm" href="/accounts/register/">Register</a></li>
+  {% endif %}
+</ul>
+
     </div>
   </div>
 </nav>
