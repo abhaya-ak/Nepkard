@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Profile
-
 class EmailAuthenticationForm(AuthenticationForm):
     username = forms.EmailField(
         label="Email",
@@ -17,12 +16,9 @@ class EmailAuthenticationForm(AuthenticationForm):
             "placeholder": "Enter password"
         })
     )
-
-
 class RegisterForm(forms.ModelForm):
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control"}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control"}))
-
     class Meta:
         model = User
         fields = ["email"]
@@ -43,7 +39,6 @@ class RegisterForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-
 
 class ProfileForm(forms.ModelForm):
     class Meta:

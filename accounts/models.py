@@ -3,7 +3,6 @@ from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
 
-
 def validate_pin_length(value):
     if len(str(value)) != 6:
         raise ValidationError('The PIN code must be exactly 6 digits.')
@@ -54,6 +53,5 @@ class Profile(models.Model):
 
     profile_image = models.ImageField(upload_to='profileimg/', blank=True, null=True)
     my_file = models.FileField(upload_to='doc/', blank=True, null=True)
-
     def __str__(self):
         return f"{self.user.username} Profile"
