@@ -3,6 +3,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 from .forms import RegisterForm, EmailAuthenticationForm, ProfileForm
+from django.http import HttpResponse
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -62,6 +63,7 @@ def profile_view(request):
     return render(request, "accounts/profile.html", {
         "form": form
     })
+
 
 @login_required
 def logout_view(request):

@@ -4,4 +4,5 @@ from .views import product_list, product_detail
 urlpatterns = [
     path("", product_list, name="product_list"),
     path("<slug:slug>/", product_detail, name="product_detail"),
+    path("category/<slug:slug>/", product_list, name="category_filter"),
 ]
