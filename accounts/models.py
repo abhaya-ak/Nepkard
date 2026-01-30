@@ -48,9 +48,7 @@ class Profile(models.Model):
             )
         ]
     )
-
     job_city = models.CharField(max_length=50)
-
     profile_image = models.ImageField(upload_to='profileimg/', blank=True, null=True)
     my_file = models.FileField(upload_to='doc/', blank=True, null=True)
     def __str__(self):
